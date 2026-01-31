@@ -1,0 +1,428 @@
+[gd_scene format=3 uid="uid://dlsky7nmo7nha"]
+
+[ext_resource type="PackedScene" uid="uid://0dhfm11af5nw" path="res://scenes/Player.tscn" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://crecu8g54fgmh" path="res://scenes/NPC_Base.tscn" id="2_rarhs"]
+[ext_resource type="PackedScene" uid="uid://u1dtwacpm75w" path="res://scenes/GameUI.tscn" id="3_vcsgt"]
+[ext_resource type="Script" uid="uid://g4m4n4g3r00a1" path="res://scripts/GameManager.gd" id="4_main"]
+[ext_resource type="Script" uid="uid://clu3b4s31d0p" path="res://scripts/Clue_Base.gd" id="5_clue"]
+[ext_resource type="Texture2D" uid="uid://cwgl8usikksyl" path="res://icon.svg" id="6_icon"]
+[ext_resource type="Script" uid="uid://inv3st1g4t10npt" path="res://scripts/InvestigationPoint.gd" id="7_inv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_clue"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_point"]
+radius = 6.0
+
+[node name="Main" type="Node2D" unique_id=1286988418]
+script = ExtResource("4_main")
+
+[node name="Locais" type="Node2D" parent="."]
+
+[node name="Bar" type="Marker2D" parent="Locais"]
+position = Vector2(160, 160)
+
+[node name="Piano" type="Marker2D" parent="Locais"]
+position = Vector2(480, 160)
+
+[node name="Fonte" type="Marker2D" parent="Locais"]
+position = Vector2(160, 480)
+
+[node name="Sacada" type="Marker2D" parent="Locais"]
+position = Vector2(480, 480)
+
+[node name="Centro" type="Marker2D" parent="Locais"]
+position = Vector2(320, 280)
+
+[node name="Pista" type="Marker2D" parent="Locais"]
+position = Vector2(320, 320)
+
+[node name="Areas" type="Node2D" parent="."]
+
+[node name="Area_Bar" type="Node2D" parent="Areas"]
+position = Vector2(40, 40)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Bar"]
+polygon = PackedVector2Array(0, 0, 240, 0, 240, 240, 0, 240)
+color = Color(0.4, 0.25, 0.15, 0.35)
+
+[node name="Label" type="Label" parent="Areas/Area_Bar"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 28.0
+text = "Bar"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Area_Piano" type="Node2D" parent="Areas"]
+position = Vector2(360, 40)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Piano"]
+polygon = PackedVector2Array(0, 0, 240, 0, 240, 240, 0, 240)
+color = Color(0.35, 0.2, 0.45, 0.35)
+
+[node name="Label" type="Label" parent="Areas/Area_Piano"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 130.0
+offset_bottom = 28.0
+text = "Piano"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Area_Fonte" type="Node2D" parent="Areas"]
+position = Vector2(40, 360)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Fonte"]
+polygon = PackedVector2Array(0, 0, 240, 0, 240, 240, 0, 240)
+color = Color(0.2, 0.4, 0.45, 0.35)
+
+[node name="Label" type="Label" parent="Areas/Area_Fonte"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 130.0
+offset_bottom = 28.0
+text = "Fonte"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Area_Sacada" type="Node2D" parent="Areas"]
+position = Vector2(360, 360)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Sacada"]
+polygon = PackedVector2Array(0, 0, 240, 0, 240, 240, 0, 240)
+color = Color(0.2, 0.25, 0.5, 0.35)
+
+[node name="Label" type="Label" parent="Areas/Area_Sacada"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 150.0
+offset_bottom = 28.0
+text = "Sacada"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Area_Pista" type="Node2D" parent="Areas"]
+position = Vector2(240, 240)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Pista"]
+polygon = PackedVector2Array(0, 0, 160, 0, 160, 160, 0, 160)
+color = Color(0.5, 0.25, 0.25, 0.25)
+
+[node name="Label" type="Label" parent="Areas/Area_Pista"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 140.0
+offset_bottom = 28.0
+text = "Pista de danca"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Area_Centro" type="Node2D" parent="Areas"]
+position = Vector2(280, 240)
+
+[node name="Shape" type="Polygon2D" parent="Areas/Area_Centro"]
+polygon = PackedVector2Array(0, 0, 80, 0, 80, 80, 0, 80)
+color = Color(0.7, 0.6, 0.2, 0.25)
+
+[node name="Label" type="Label" parent="Areas/Area_Centro"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 120.0
+offset_bottom = 28.0
+text = "Centro"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+
+[node name="Pistas" type="Node2D" parent="."]
+
+[node name="Investigacao" type="Node2D" parent="."]
+
+[node name="Ponto_Bar" type="Area2D" parent="Investigacao"]
+position = Vector2(120, 120)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Bar_Copo")
+reveal_text = "Algo no Bar chamou sua atencao."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Bar"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Bar"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Ponto_Piano" type="Area2D" parent="Investigacao"]
+position = Vector2(520, 120)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Piano_Teclas")
+reveal_text = "Algo no Piano parece fora do lugar."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Piano"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Piano"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Ponto_Fonte" type="Area2D" parent="Investigacao"]
+position = Vector2(120, 520)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Fonte_Moeda")
+reveal_text = "Algo na Fonte brilhou por um instante."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Fonte"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Fonte"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Ponto_Sacada" type="Area2D" parent="Investigacao"]
+position = Vector2(520, 520)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Sacada_Lenco")
+reveal_text = "Algo na Sacada balanca com o vento."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Sacada"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Sacada"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Ponto_Pista" type="Area2D" parent="Investigacao"]
+position = Vector2(320, 300)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Pista_Brilho")
+reveal_text = "Algo no chao da pista parece arranhado."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Pista"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Pista"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Ponto_Centro" type="Area2D" parent="Investigacao"]
+position = Vector2(320, 260)
+script = ExtResource("7_inv")
+clue_path = NodePath("../Pistas/Clue_Centro_Botao")
+reveal_text = "Algo no Centro parece ter caido."
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Investigacao/Ponto_Centro"]
+shape = SubResource("CircleShape2D_point")
+
+[node name="Sprite2D" type="Sprite2D" parent="Investigacao/Ponto_Centro"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.04, 0.04)
+modulate = Color(1, 1, 1, 0.8)
+
+[node name="Clue_Bar_Copo" type="Area2D" parent="Pistas"]
+position = Vector2(180, 180)
+script = ExtResource("5_clue")
+descricao_pista = "No Bar, um lenço de seda e um perfume doce permanecem no copo."
+mask_hint = "MASCARA DE RAPOSA"
+local_hint = "Bar"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Bar_Copo"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Bar_Copo"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Clue_Piano_Teclas" type="Area2D" parent="Pistas"]
+position = Vector2(500, 180)
+script = ExtResource("5_clue")
+descricao_pista = "No Piano, luvas impecáveis e marcas delicadas no chão."
+mask_hint = "MASCARA DE CERVO"
+local_hint = "Piano"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Piano_Teclas"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Piano_Teclas"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(0.6, 0.5, 0.9, 1)
+
+[node name="Clue_Fonte_Moeda" type="Area2D" parent="Pistas"]
+position = Vector2(180, 500)
+script = ExtResource("5_clue")
+descricao_pista = "Na Fonte, pingos apressados e uma fita mal amarrada."
+mask_hint = "MASCARA DE COELHO"
+local_hint = "Fonte"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Fonte_Moeda"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Fonte_Moeda"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(0.2, 0.6, 0.8, 1)
+
+[node name="Clue_Sacada_Lenco" type="Area2D" parent="Pistas"]
+position = Vector2(500, 500)
+script = ExtResource("5_clue")
+descricao_pista = "Na Sacada, arranhões na grade e um cheiro forte de ferro."
+mask_hint = "MASCARA DE LOBO"
+local_hint = "Sacada"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Sacada_Lenco"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Sacada_Lenco"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(0.4, 0.5, 1, 1)
+
+[node name="Clue_Pista_Brilho" type="Area2D" parent="Pistas"]
+position = Vector2(320, 340)
+script = ExtResource("5_clue")
+descricao_pista = "Na Pista de danca, migalhas e um copo derramado."
+mask_hint = "MASCARA DE JAVALI"
+local_hint = "Pista de danca"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Pista_Brilho"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Pista_Brilho"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(1, 0.8, 0.3, 1)
+
+[node name="Clue_Centro_Botao" type="Area2D" parent="Pistas"]
+position = Vector2(320, 280)
+script = ExtResource("5_clue")
+descricao_pista = "No Centro, uma pena acinzentada e passos circulares."
+mask_hint = "MASCARA DE CORUJA"
+local_hint = "Centro"
+sprite_path = NodePath("Sprite2D")
+starts_hidden = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pistas/Clue_Centro_Botao"]
+shape = SubResource("RectangleShape2D_clue")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pistas/Clue_Centro_Botao"]
+texture = ExtResource("6_icon")
+scale = Vector2(0.08, 0.08)
+modulate = Color(1, 0.85, 0.2, 1)
+
+[node name="NPC_Javali" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(320, 320)
+npc_id = 1
+original_personality = "Javali"
+mascara_inicial = "MASCARA DE JAVALI"
+local_fase_1 = "Pista de danca"
+falas_fase1 = PackedStringArray("Que festa medíocre! Fico perto da Pista de danca porque é onde a comida passa primeiro.", "Se tiver mesa de frios, eu estou por perto. A Pista de danca é o caminho.", "Estou com fome e com sede, e esse salao so piora meu humor.")
+falas_fase2_inocente = PackedStringArray("Meu estomago virou quando tudo apagou, que horror.", "So ouvi passos e um grito, nada mais.")
+falas_fase2_killer = PackedStringArray("Eu so queria comer em paz, entende?", "Essa confusao toda me irrita.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(0.75, 0.5, 0.3, 1)
+
+[node name="NPC_Cervo" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(480, 160)
+npc_id = 2
+original_personality = "Cervo"
+mascara_inicial = "MASCARA DE CERVO"
+local_fase_1 = "Piano"
+falas_fase1 = PackedStringArray("Peço perdão, mas o Piano é o único lugar onde consigo respirar em paz.", "Permita-me dizer, a etiqueta neste salão é delicada; observo tudo a partir do Piano.", "Peço desculpas pela distração, estou atento aos detalhes da melodia.")
+falas_fase2_inocente = PackedStringArray("Peço perdão, fiquei aterrorizado quando a luz se foi.", "Perdoe-me, o grito me paralisou.")
+falas_fase2_killer = PackedStringArray("Eu me perdi no som... não sei dizer.", "Peço perdão, não vi nada.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(0.85, 0.85, 1, 1)
+
+[node name="NPC_Coelho" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(160, 480)
+npc_id = 3
+original_personality = "Coelho"
+mascara_inicial = "MASCARA DE COELHO"
+local_fase_1 = "Fonte"
+falas_fase1 = PackedStringArray("Eu... eu estava na Fonte, estava! Você ouviu? ouviu a água?", "A Fonte... a Fonte me acalma, ou pelo menos tentava.", "Eu falo rápido, eu sei, mas é que tudo aqui me deixa nervoso.")
+falas_fase2_inocente = PackedStringArray("As luzes piscaram! piscaram! eu... eu não vi nada.", "Eu juro, juro mesmo, foi tão rápido!")
+falas_fase2_killer = PackedStringArray("E-eu não sei, não sei!", "Eu só ouvi um grito, só isso.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(0.9, 0.8, 0.9, 1)
+
+[node name="NPC_Raposa" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(160, 160)
+npc_id = 4
+original_personality = "Raposa"
+mascara_inicial = "MASCARA DE RAPOSA"
+local_fase_1 = "Bar"
+falas_fase1 = PackedStringArray("Oh, querido... o brilho deste salao esconde sombras deliciosas. Eu estava no Bar.", "Algumas curiosidades preferem a penumbra; o Bar serve bem a esse papel.", "As mascaras sao pecas em movimento, e eu apenas observo do Bar.")
+falas_fase2_inocente = PackedStringArray("Oh, querido... a luz se foi e o medo dancou comigo.", "A escuridao mostrou suas cartas, foi... fascinante.")
+falas_fase2_killer = PackedStringArray("Eu so ouvi o grito, nada mais.", "Talvez a noite tenha mudado, querido.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(1, 0.6, 0.3, 1)
+
+[node name="NPC_Coruja" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(320, 280)
+npc_id = 5
+original_personality = "Coruja"
+mascara_inicial = "MASCARA DE CORUJA"
+local_fase_1 = "Centro"
+falas_fase1 = PackedStringArray("A Coruja observa do Centro. O silencio pesa mais que a musica.", "Eu vejo tudo daqui. O Centro revela mais do que aparenta.", "A Coruja nota cada gesto. O Centro e meu posto.")
+falas_fase2_inocente = PackedStringArray("O silencio se quebrou, e o salao respirou medo.", "Eu vi sombras sem rosto quando a luz caiu.")
+falas_fase2_killer = PackedStringArray("O caos foi breve. Eu apenas observei.", "Nada me escapou, mas nao vi o suficiente.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(0.6, 0.7, 0.9, 1)
+
+[node name="NPC_Lobo" parent="." instance=ExtResource("2_rarhs")]
+position = Vector2(480, 480)
+npc_id = 6
+original_personality = "Lobo"
+mascara_inicial = "MASCARA DE LOBO"
+local_fase_1 = "Sacada"
+falas_fase1 = PackedStringArray("Saia do meu caminho. A Sacada e o unico lugar que presta.", "O cheiro aqui e melhor, longe desse barulho irritante.", "Fico na Sacada. Menos gente, mais ar.")
+falas_fase2_inocente = PackedStringArray("Grr... as luzes morreram, mas eu nao vi nada.", "Eu senti passos correndo, isso eu senti.")
+falas_fase2_killer = PackedStringArray("Nao me empurra, eu so ouvi o grito.", "Grr... foi rapido.")
+is_killer = false
+alibi_falso = ""
+sprite_color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="Player_tscn" parent="." unique_id=504424106 instance=ExtResource("1_0bbpv")]
+position = Vector2(320, 220)
+
+[node name="GameUI" parent="." unique_id=340780342 instance=ExtResource("3_vcsgt")]
+metadata/_edit_use_anchors_ = true

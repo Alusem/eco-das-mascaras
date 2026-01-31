@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dlsky7nmo7nha"]
+
+[ext_resource type="PackedScene" uid="uid://0dhfm11af5nw" path="res://scenes/Player.tscn" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://crecu8g54fgmh" path="res://scenes/NPC_Base.tscn" id="2_rarhs"]
+[ext_resource type="PackedScene" uid="uid://u1dtwacpm75w" path="res://scenes/GameUI.tscn" id="3_vcsgt"]
+
+[node name="Main" type="Node2D" unique_id=1286988418]
+
+[node name="NpcBase" parent="." unique_id=1898577324 instance=ExtResource("2_rarhs")]
+
+[node name="Player_tscn" parent="." unique_id=504424106 instance=ExtResource("1_0bbpv")]
+position = Vector2(11, 11)
+
+[node name="GameUI" parent="." unique_id=340780342 instance=ExtResource("3_vcsgt")]
+metadata/_edit_use_anchors_ = true

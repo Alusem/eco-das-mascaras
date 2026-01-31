@@ -1,0 +1,252 @@
+[gd_scene format=3 uid="uid://u1dtwacpm75w"]
+
+[ext_resource type="Script" uid="uid://cemf2pua7qcmk" path="res://scripts/GameUI.gd" id="1_jkspe"]
+[ext_resource type="AudioStream" uid="uid://d6h3t0c0r4o" path="res://resources/Som do coração_ Percepção sonora - Musicalizando com Tio Carlos (youtube).mp3" id="2_heart"]
+
+[sub_resource type="Shader" id="Shader_vignette"]
+code = "shader_type canvas_item;
+uniform float strength = 0.0;
+uniform float pulse = 0.0;
+void fragment() {
+	vec2 uv = UV * 2.0 - 1.0;
+	float dist = length(uv);
+	float vignette = smoothstep(0.4, 1.0, dist);
+	float alpha = strength * vignette * (0.6 + 0.4 * pulse);
+	COLOR = vec4(0.0, 0.0, 0.0, alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vignette"]
+shader = SubResource("Shader_vignette")
+
+[node name="GameUI" type="Control" unique_id=340780342]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_jkspe")
+dialog_panel_path = NodePath("CanvasLayer/Panel")
+dialog_label_path = NodePath("CanvasLayer/Panel/RichTextLabel")
+dialog_name_label_path = NodePath("CanvasLayer/Panel/NamePlate/NameLabel")
+dialog_name_plate_path = NodePath("CanvasLayer/Panel/NamePlate")
+dialog_portrait_path = NodePath("CanvasLayer/Panel/Portrait")
+caderno_panel_path = NodePath("CanvasLayer/CadernoPanel")
+caderno_label_path = NodePath("CanvasLayer/CadernoPanel/RichTextLabel")
+acusar_button_path = NodePath("CanvasLayer/AcusarButton")
+confirm_panel_path = NodePath("CanvasLayer/ConfirmPanel")
+confirm_label_path = NodePath("CanvasLayer/ConfirmPanel/ConfirmVBox/ConfirmLabel")
+confirm_yes_button_path = NodePath("CanvasLayer/ConfirmPanel/ConfirmVBox/ConfirmButtons/YesButton")
+confirm_no_button_path = NodePath("CanvasLayer/ConfirmPanel/ConfirmVBox/ConfirmButtons/NoButton")
+result_panel_path = NodePath("CanvasLayer/ResultPanel")
+result_label_path = NodePath("CanvasLayer/ResultPanel/ResultVBox/ResultLabel")
+result_button_path = NodePath("CanvasLayer/ResultPanel/ResultVBox/RestartButton")
+blackout_rect_path = NodePath("CanvasLayer/Blackout")
+blackout_label_path = NodePath("CanvasLayer/Blackout/BlackoutLabel")
+clock_label_path = NodePath("CanvasLayer/ClockLabel")
+heartbeat_player_path = NodePath("CanvasLayer/HeartbeatPlayer")
+vignette_rect_path = NodePath("CanvasLayer/Vignette")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1462054828]
+
+[node name="Blackout" type="ColorRect" parent="CanvasLayer" unique_id=2145639882]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+color = Color(0, 0, 0, 1)
+
+[node name="BlackoutLabel" type="Label" parent="CanvasLayer/Blackout" unique_id=2145639883]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = ""
+
+[node name="ClockLabel" type="Label" parent="CanvasLayer" unique_id=2145639884]
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.3
+anchor_bottom = 0.08
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+text = "Conversa 00:00"
+
+[node name="HeartbeatPlayer" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=2145639885]
+stream = ExtResource("2_heart")
+volume_db = -24.0
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer" unique_id=2145639886]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+color = Color(0, 0, 0, 0)
+material = SubResource("ShaderMaterial_vignette")
+
+[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=42257329]
+anchor_left = 0.05
+anchor_top = 0.78
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Portrait" type="TextureRect" parent="CanvasLayer/Panel" unique_id=2145639887]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 96.0
+offset_bottom = 96.0
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NamePlate" type="Panel" parent="CanvasLayer/Panel" unique_id=2145639888]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 112.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 38.0
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/Panel/NamePlate" unique_id=2145639889]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = -6.0
+offset_bottom = -2.0
+text = "Nome"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel" unique_id=106761284]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 44.0
+offset_right = -16.0
+offset_bottom = -16.0
+autowrap_mode = 3
+
+[node name="AcusarButton" type="Button" parent="CanvasLayer" unique_id=2145639871]
+anchor_left = 0.74
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.1
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+text = "Acusar Mentira"
+
+[node name="ConfirmPanel" type="Panel" parent="CanvasLayer" unique_id=2145639872]
+anchor_left = 0.3
+anchor_top = 0.35
+anchor_right = 0.7
+anchor_bottom = 0.55
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ConfirmVBox" type="VBoxContainer" parent="CanvasLayer/ConfirmPanel" unique_id=2145639873]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
+alignment = 1
+
+[node name="ConfirmLabel" type="Label" parent="CanvasLayer/ConfirmPanel/ConfirmVBox" unique_id=2145639874]
+text = "Acusar?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ConfirmButtons" type="HBoxContainer" parent="CanvasLayer/ConfirmPanel/ConfirmVBox" unique_id=2145639875]
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="YesButton" type="Button" parent="CanvasLayer/ConfirmPanel/ConfirmVBox/ConfirmButtons" unique_id=2145639876]
+text = "Sim"
+
+[node name="NoButton" type="Button" parent="CanvasLayer/ConfirmPanel/ConfirmVBox/ConfirmButtons" unique_id=2145639877]
+text = "Nao"
+
+[node name="ResultPanel" type="Panel" parent="CanvasLayer" unique_id=2145639878]
+anchor_left = 0.25
+anchor_top = 0.3
+anchor_right = 0.75
+anchor_bottom = 0.6
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="ResultVBox" type="VBoxContainer" parent="CanvasLayer/ResultPanel" unique_id=2145639879]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = -10.0
+alignment = 1
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/ResultPanel/ResultVBox" unique_id=2145639880]
+text = "Resultado"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/ResultPanel/ResultVBox" unique_id=2145639881]
+text = "Jogar Novamente"
+
+[node name="CadernoPanel" type="Panel" parent="CanvasLayer" unique_id=1987654321]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 336.0
+offset_bottom = 236.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CadernoPanel" unique_id=1987654322]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+autowrap_mode = 3

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://crecu8g54fgmh"]
+
+[ext_resource type="Script" uid="uid://wpnyhrq2x6sh" path="res://scripts/NPC_Base.gd" id="1_wqjbv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eb4n"]
+size = Vector2(24, 24)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6jb80"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+
+[node name="NPC_Base" type="StaticBody2D" unique_id=1488119352]
+script = ExtResource("1_wqjbv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=676700558]
+shape = SubResource("RectangleShape2D_4eb4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1765749072]
+scale = Vector2(0.15625, 0.15625)
+texture = SubResource("CompressedTexture2D_6jb80")
